@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-
+    int heart = 100;
     // Start is called before the first frame update
     void Start()
     {
-        heart = 100;
     }
 
     // Update is called once per frame
