@@ -5,23 +5,36 @@ using UnityEngine;
 public class PlayerMovemtts : MonoBehaviour
 {
     // Start is called before the first frame update
-    Vector2 xMove;
     Transform player;
+    Vector2 move;
     void Start()
     {
-        xMove = new Vector2(1.0f, 0.0f);
         player = gameObject.transform;
-
+        move = new Vector2(0.0f, 0.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        float arrowInput = Input.GetAxis("Horizontal");
-        float upDown = Input.GetAxis("Verical");
-        xMove.x = arrowInput;
-        xMove.y = upDown;
-        player.Translate(xMove * Time.deltaTime);
-        Vector2 flip = new Vector2(-1.0f, 1.0f);
+        MovePlayer();
+        if(Input.GetAxis("Horizontal") > 0)
+        {
+            player.localScale = new Vector3(20, 20, 1);
+        }
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            player.localScale = new Vector3(-20, 20, 1);
+        }
     }
+
+    void MovePlayer()
+    {
+        float newX = Input.GetAxis("Horizontal");
+        float newY = Input.GetAxis("Vertical");
+        move.x = newX;
+        move.y = newY;
+        player.Translate(move * Time.deltaTime);
+    }
+
+   
 }
